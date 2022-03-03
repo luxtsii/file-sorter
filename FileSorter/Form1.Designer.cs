@@ -33,6 +33,9 @@
             this.sortButton = new System.Windows.Forms.Button();
             this.folderSelect = new System.Windows.Forms.FolderBrowserDialog();
             this.outputLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.copyCheck = new System.Windows.Forms.CheckBox();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // folderPathBox
@@ -71,11 +74,30 @@
             this.outputLabel.Size = new System.Drawing.Size(0, 13);
             this.outputLabel.TabIndex = 3;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.copyCheck);
+            this.panel1.Location = new System.Drawing.Point(13, 69);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(340, 89);
+            this.panel1.TabIndex = 4;
+            // 
+            // copyCheck
+            // 
+            this.copyCheck.AutoSize = true;
+            this.copyCheck.Location = new System.Drawing.Point(5, 3);
+            this.copyCheck.Name = "copyCheck";
+            this.copyCheck.Size = new System.Drawing.Size(145, 17);
+            this.copyCheck.TabIndex = 0;
+            this.copyCheck.Text = "Copy file instead of Move";
+            this.copyCheck.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(496, 74);
+            this.ClientSize = new System.Drawing.Size(496, 171);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.outputLabel);
             this.Controls.Add(this.sortButton);
             this.Controls.Add(this.selectFolder);
@@ -87,6 +109,8 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "File Sorter";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -99,6 +123,8 @@
         private System.Windows.Forms.Button sortButton;
         private System.Windows.Forms.FolderBrowserDialog folderSelect;
         private System.Windows.Forms.Label outputLabel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox copyCheck;
     }
 }
 

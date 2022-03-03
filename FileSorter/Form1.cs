@@ -31,6 +31,8 @@ namespace FileSorter
 
         private void SortFolders(string filePath)
         {
+            copyCheck.Enabled = false;
+
             string[] files = Directory.GetFiles(filePath);
 
             foreach (string file in files)
@@ -40,15 +42,47 @@ namespace FileSorter
 
                 if (Directory.Exists(filePath + "\\" + fileType.ToUpper()))
                 {
-                    File.Move(file, filePath + "\\" + fileType.ToUpper() + "\\" + fileName);
+                    if (copyCheck.CheckState == CheckState.Checked)
+                    {
+                        try
+                        {
+                            File.Copy(file, filePath + "\\" + fileType.ToUpper() + "\\" + fileName);
+                        }
+                        catch (Exception)
+                        {
+                            outputLabel.Text = "Out of space. Aborting.";
+                            return;
+                        }
+                    } 
+                    else
+                    {
+                        File.Move(file, filePath + "\\" + fileType.ToUpper() + "\\" + fileName);
+                    }
                 } 
                 else
                 {
                     Directory.CreateDirectory(filePath + "\\" + fileType.ToUpper());
-                    File.Move(file, filePath + "\\" + fileType.ToUpper() + "\\" + fileName);
+
+                    if (copyCheck.CheckState == CheckState.Checked)
+                    {
+                        try
+                        {
+                            File.Copy(file, filePath + "\\" + fileType.ToUpper() + "\\" + fileName);
+                        }
+                        catch (Exception)
+                        {
+                            outputLabel.Text = "Out of space. Aborting.";
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        File.Move(file, filePath + "\\" + fileType.ToUpper() + "\\" + fileName);
+                    }
                 }
             }
 
+            copyCheck.Enabled = true;
             outputLabel.Text = "Done!";
         }
 
